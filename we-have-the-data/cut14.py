@@ -9,11 +9,11 @@ import csv
 import pandas as pd
 
 
-file = 'odum.wav'
+file = 'odum'
 
 #music files were 2 seconds,and really works just make wav to mp3 and then play
 
-with wave.open(file,'r') as wav_file:
+with wave.open(f"{file}.wav",'r') as wav_file:
 
 
     #print(wav_file.getnchannels())
@@ -42,23 +42,19 @@ with wave.open(file,'r') as wav_file:
     Time=np.linspace(0, len(signal)/len(channels)/fs, num=int(len(signal)/len(channels)))
     
     #print(Time[-1])
-
     #print(len(signal)/Time[-1])
 
-    #print(range(int(Time[-1]))) #0-132
+    
     
     divided_data=[]
-    #divided_data += [signal[:int(len(signal)/Time[-1])]]
     for i in range(int(Time[-1])+1):
         #print(i)
         i=i+1
-        #divided_data += [signal[:int(len(signal)/Time[-1])]]
        
-        #print(signal[(i-1)*int(len(signal)/Time[-1]):i*int(len(signal)/Time[-1])])
-
-        divided_data += [signal[(i-1)*int(len(signal)/Time[-1]):i*int(len(signal)/Time[-1])]]
         
-        #when even doesnt work,odd works,divided_data[1]=empty???
+        divided_data += [signal[(i-1)*int(len(signal)/Time[-1]):i*int(len(signal)/Time[-1])]]
+        #print(divided_data)
+        
         #pass
         
     #print(divided_data)
@@ -66,41 +62,40 @@ with wave.open(file,'r') as wav_file:
     #print(d_data[0])
     #print(d_data[121])
 
-    #unordered data for ai
 
+
+    #ordered data for ai
     with_order=[]
     for i,j in enumerate(divided_data):
         o_data=[i,j]
         with_order +=[o_data]
+
     #print(with_order)
     data_for_shuffling=[i for i in with_order]
 
     original_data=data_for_shuffling
 
     df=pd.DataFrame(original_data)    
-    df.to_pickle("original.pickle")
+    df.to_pickle(f"original-{file}.pickle")
     
+
+
     #print("data0",data_for_shuffling[0])
     #print("data131",data_for_shuffling[131])
     
 
-    #shuffling_data=divided_data
-    #shuffling_data=random.shuffle(shuffling_data)
-    #random.shuffle(shuffling_data)
-
+   
+    #unodered data for ai
     shuffling_data=data_for_shuffling
     random.shuffle(shuffling_data)
-
-
 
     shuffle_data=[]
     data_for_music=[i for i in shuffling_data]
     
     #writing unordered music data to pickle
-
     df=pd.DataFrame(data_for_music)    
     #print(dir(df))
-    df.to_pickle("shuffled.pickle")
+    df.to_pickle(f"shuffled-{file}.pickle")
     
 
 
@@ -111,29 +106,10 @@ with wave.open(file,'r') as wav_file:
 
 
 
-    #shuffle_tuple = []
     for i,j in enumerate(shuffling_data):
         #print(i,j)
-    #    data=[i,j]
-    #    shuffle_tuple += data
-        #data={}
-        #df=pd.DataFrame(data)
-        #i=[j]
-        #df[f"{i}"]=j
-        #df.to_csv("shuffling_data.csv")
-
-        #csv_data=open("shuffled_data","w")
-        #writer=csv.writer(csv_data)
-        #writer.writerow([j])
-        #csv_data.close()
-        
-        #df=pd.DataFrame({f"{i}":j})
-
-        #df.to_csv("shuffling_data.csv",index=False)
         pass
-    #df=pd.DataFrame(shuffle_tuple)    
-    #df.to_csv("shuffle.txt")
-
+   
     #for i in range(divided_data):
 
     
@@ -141,15 +117,8 @@ with wave.open(file,'r') as wav_file:
     #ordered data
     #ordered for adding as last element with i and j as one list
     for i,j in enumerate(divided_data):    
-        #print(i,j)
-       
-        #pass
-
-        #pass
-        #music_part=wave.open(f"{file}-{i}.wav","w")
-        #scipy.io.wavfile.write(f"{file}-{i}.wav",frame_rate,j)
-        
-        #scipy.io.wavfile.write(f"{i}-{file}",frame_rate,j)
+        #print(i,j)        
+        #scipy.io.wavfile.write(f"{i}-{file}.wav",frame_rate,j)
         
         #music_part.write(j)
         pass
