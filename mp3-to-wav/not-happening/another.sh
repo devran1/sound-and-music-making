@@ -1,0 +1,9 @@
+sudo mpg123 -w ant.wav ant.mp3
+sudo mpg123 -w exquisite-corpse.wav exquisite-corpse.mp3
+sudo mpg123 -w get_away.wav get_away.mp3
+sudo mpg123 -w GHOSTMANE-Kali-Yuga.wav GHOSTEMANE-Kali-Yuga.mp3
+sudo mpg123 -w lithuanian.wav lithuanian.mp3
+sudo mpg123 -w living-thompstone.wav living-thompstone.mp3
+sudo mpg123 -w maybe-we-can-be-better.wav maybe-we-can-be-better.mp3
+sudo mpg123 -w on_that_drift.wav on_that_drift.mp3
+sudo mpg123 -w paradelous.wav paradelous.mp3
