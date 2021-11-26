@@ -4,6 +4,12 @@ import pandas as pd
 from pandas.core.arrays.sparse import dtype
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error, r2_score
+from sklearn.ensemble import RandomForestRegressor
+
+
+import matplotlib.pyplot as plt
+
 import numpy as np
 
 
@@ -100,6 +106,8 @@ x_train, x_test, y_train, y_test = train_test_split(x_data, y_data, test_size=0.
 #print(y_train)
 #print(y_test)
 
+
+
 lr = LinearRegression()
 lr.fit(x_train, y_train)
 
@@ -108,7 +116,50 @@ lr.fit(x_train, y_train)
 #make predictions on the training set and test set as follows:
 
 y_lr_train_pred = lr.predict(x_train)
+
+#list1=[]
+#for i in y_lr_train_pred:
+#    list1 += i
+
 y_lr_test_pred = lr.predict(x_test)
+
+#all_list=[y_lr_test_pred]+[y_lr_train_pred]
+#print(all_list)
+
+#pred_list=[]
+#for i in y_lr_test_pred:
+#    print(i)
+#    pred_list += i
+#for j in y_lr_train_pred:
+#    pred_list += j
+
+#print(pred_list)
+
 
 #print(y_lr_train_pred)
 #print(y_lr_test_pred)
+
+#determine the model performance.
+
+lr_train_mse = mean_squared_error(y_train, y_lr_train_pred)
+#print(lr_train_mse)
+lr_train_r2 = r2_score(y_train, y_lr_train_pred)
+#print(lr_train_r2)
+
+
+lr_test_mse = mean_squared_error(y_test, y_lr_test_pred)
+#print(lr_test_mse)
+lr_test_r2 = r2_score(y_test, y_lr_test_pred)
+#print(lr_test_r2)
+
+"""
+#build an RF model using the following code
+rf = RandomForestRegressor(max_depth=2, random_state=42)
+rf.fit(x_train, y_train)
+
+y_rf_train_pred = rf.predict(x_train)
+y_rf_test_pred = rf.predict(x_test)
+
+print(y_rf_train_pred)
+print(y_rf_test_pred)
+"""
